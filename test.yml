@@ -1,4 +1,9 @@
 ---
+header:
+  author: John
+  title: Example Presentation
+  description: This presentation is very example like
+
 slides:
    - # slide one
      - h1: hello

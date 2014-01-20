@@ -29,10 +29,10 @@ REVEAL_HEADER = """
         <head>
                 <meta charset="utf-8">
 
-                <title>reveal.js - The HTML Presentation Framework</title>
+                <title>%(title)s</title>
 
-                <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-                <meta name="author" content="Hakim El Hattab">
+                <meta name="description" content="%(description)s">
+                <meta name="author" content="%(author)s">
 
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -109,6 +109,10 @@ REVEAL_FOOTER = """
 
 """
 
+DEFAULT_AUTHOR = "Default Author"
+DEFAULT_TITLE = "Default Title"
+DEFAULT_DESCRIPTION = "Default Description"
+
 class Deck(object):
 
    def __init__(self, filename):
@@ -129,7 +133,11 @@ class Deck(object):
            self.write_slide(x)
 
    def write_header(self, data):
-       self.io.write(REVEAL_HEADER)
+       self.io.write(REVEAL_HEADER % dict(
+           author = data.get('author', DEFAULT_AUTHOR),
+           title = data.get('title', DEFAULT_TITLE),
+           description = data.get('description', DEFAULT_DESCRIPTION),
+       ))
 
    def write_footer(self, data):
        self.io.write(REVEAL_FOOTER)
