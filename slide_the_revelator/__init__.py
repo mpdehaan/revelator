@@ -148,7 +148,12 @@ class Deck(object):
            if type(elem) != dict:
                raise Exception("expected a list of dicts")           
            for (k,v) in elem.iteritems():
-               self.io.write("<%s>%s</%s>" % (k,v,k))
+               nk = k
+
+               if nk == 'class_notes':
+                   nk = 'aside class=\'notes\''
+
+               self.io.write("<%s>%s</%s>" % (nk,v,nk))
        self.io.write("</section>")
        
 

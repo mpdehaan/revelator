@@ -5,11 +5,17 @@ header:
   description: This presentation is very example like
 
 slides:
-   - # slide one
+
+   -
      - h1: hello
      - h3: this is a deck
 
-   - # slide two
+   -
      - h1: I am slide two
      - p: Dropping knowledge 
+     - class_notes: 
+         Here are some speaker notes that will be hidden in your presentation
+         unless you press 's' on your keyboard.
 
+
+   # NOT SUPPORTED YET: NESTED VERTICAL SLIDES
