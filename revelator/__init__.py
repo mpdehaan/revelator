@@ -190,6 +190,10 @@ class Deck(object):
                        end_key = "</p>"
                        value = ""
 
+                   elif k == 'quote':
+                       start_key = '<blockquote>'
+                       end_key = '</blockquote>'
+
                    self.io.write("%s%s%s" % (start_key, value, end_key))
 
        # end section

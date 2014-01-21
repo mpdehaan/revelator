@@ -31,11 +31,17 @@ slides:
           ansible.all_the_things() 
 
    - 
+     - h1: Quotes
+     - quote: '"Fear is the mindkiller" -- Frank Herbert'
+     - quote: '"Narf!" -- Pinky'
+
+   - 
      - h3: Links and images
      - image: 'https://pbs.twimg.com/profile_images/422168535/51035561796_N01_bigger.jpg'
      - link: [ 'Ansible Docs', 'http://docs.ansible.com' ]
      - link: [ 'Galaxy', 'http://galaxy.ansibleworks.com' ]
-  
+   
+   
    
  
 
