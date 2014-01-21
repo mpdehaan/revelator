@@ -29,9 +29,20 @@ slides:
      - code: |
           import ansible
           ansible.all_the_things() 
+     
+   - set_global:
+       background: '#007777'
 
    - 
-     - h1: Quotes
+     - h3: This background is greenish
+     - p: we just tweaked some defaults!
+
+   - set_global:
+       background: '#000000'
+       transition: rotate
+
+   - 
+     - h3: Quotes (and restored defaults)
      - quote: '"Fear is the mindkiller" -- Frank Herbert'
      - quote: '"Narf!" -- Pinky'
 

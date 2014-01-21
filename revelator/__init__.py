@@ -117,6 +117,10 @@ class Deck(object):
 
    def __init__(self, filename):
        self.filename = filename
+       self.defaults = dict(
+           transition = 'linear',
+           background = '#000000'    
+       )
        fh = open(self.filename, 'r')
        self.data = yaml.load(fh.read())
        self.io = StringIO.StringIO()
@@ -130,7 +134,14 @@ class Deck(object):
 
    def write_slides(self, data):
        for x in data:
-           self.write_slide(x)
+           if type(x) == dict:
+               for (k,v) in x.iteritems():
+                   if k == 'set_global':
+                       self.defaults.update(v)
+                   else:
+                       raise Exception("unknown key: %s" % k)
+           elif type(x) == list: 
+               self.write_slide(x)
 
    def write_header(self, data):
        self.io.write(REVEAL_HEADER % dict(
@@ -145,13 +156,20 @@ class Deck(object):
    def write_slide(self, slide_data):
 
        # begin section
-       self.io.write("<section>\n")
+       self.io.write("<section data-background='%(background)s' data-transition='%(transition)s'>\n" % (self.defaults))
+               
+
 
        # for each element in the slide
        for elem in slide_data:
+
+
            if type(elem) != dict:
                raise Exception("expected a list of dicts")           
+
            for (k,v) in elem.iteritems():
+
+
 
                if k == 'ol' :
 
