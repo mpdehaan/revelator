@@ -17,6 +17,12 @@ slides:
          Here are some speaker notes that will be hidden in your presentation
          unless you press 's' on your keyboard.
 
+   - 
+     - h1: This is how lists work
+     - ol:
+        - alpha
+        - beta
+        - gamma 
 
    # NOT SUPPORTED YET: NESTED VERTICAL SLIDES
    # (CONTINUING LIST OF NOT SUPPORTED YET THINGS PENDING AS I GO DOWN THE EXAMPLES AND MAKE YAML VERSIONS)

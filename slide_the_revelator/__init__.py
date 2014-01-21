@@ -143,19 +143,40 @@ class Deck(object):
        self.io.write(REVEAL_FOOTER)
 
    def write_slide(self, slide_data):
+
+       # begin section
        self.io.write("<section>\n")
+
+       # for each element in the slide
        for elem in slide_data:
            if type(elem) != dict:
                raise Exception("expected a list of dicts")           
            for (k,v) in elem.iteritems():
-               start_key = k
-               end_key = k
 
-               if k == 'class_notes':
-                   start_key = 'aside class=\'notes\''
-                   end_key = 'aside'
+               if k == 'ol' :
 
-               self.io.write("<%s>%s</%s>" % (start_key, v, end_key))
+                   # ordered lists
+                   self.io.write("<ol>")  
+                   for v2 in v:
+                       self.io.write("<li>%s</li>" % v2)
+                   self.io.write("</ol>")
+
+
+               else:
+
+                   # regular tags
+                   start_key = k
+                   end_key = k
+
+                   # special handling
+                   if k == 'class_notes':
+                       # class notes
+                       start_key = 'aside class=\'notes\''
+                       end_key = 'aside'
+
+                   self.io.write("<%s>%s</%s>" % (start_key, v, end_key))
+
+       # end section
        self.io.write("</section>")
        
 
