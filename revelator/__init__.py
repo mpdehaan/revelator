@@ -171,13 +171,13 @@ class Deck(object):
 
 
 
-               if k == 'ol' :
+               if k in [ 'ol', 'ul' ] :
 
                    # ordered lists
-                   self.io.write("<ol>")  
+                   self.io.write("<%s>" % k)  
                    for v2 in v:
                        self.io.write("<li>%s</li>" % v2)
-                   self.io.write("</ol>")
+                   self.io.write("</%s>" % k)
 
 
                else:

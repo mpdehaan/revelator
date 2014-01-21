@@ -18,11 +18,18 @@ slides:
          unless you press 's' on your keyboard.
 
    - 
-     - h3: This is how lists work
+     - h3: This is how ordered lists work
      - ol:
         - alpha
         - beta
         - gamma 
+
+   - 
+     - h3: And unordered lists are also a thing
+     - ul:
+        - duck
+        - duck
+        - goose 
 
    -
      - h3: Code highlighting demo
@@ -42,9 +49,12 @@ slides:
        transition: rotate
 
    - 
-     - h3: Quotes (and restored defaults)
+     - h3: Quotes (and a different slide transition)
      - quote: '"Fear is the mindkiller" -- Frank Herbert'
      - quote: '"Narf!" -- Pinky'
+
+   - set_global:
+       transition: linear # rotate is annoying
 
    - 
      - h3: Links and images
@@ -52,10 +62,9 @@ slides:
      - link: [ 'Ansible Docs', 'http://docs.ansible.com' ]
      - link: [ 'Galaxy', 'http://galaxy.ansibleworks.com' ]
    
-   
+   - 
+     - h3: Yay!
    
  
-
    # NOT SUPPORTED YET: NESTED VERTICAL SLIDES
-   # (CONTINUING LIST OF NOT SUPPORTED YET THINGS PENDING AS I GO DOWN THE EXAMPLES AND MAKE YAML VERSIONS)
    
