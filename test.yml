@@ -11,24 +11,30 @@ slides:
      - h3: this is a deck
 
    -
-     - h1: I am slide two
+     - h3: I am slide two
      - p: Dropping knowledge 
      - class_notes: 
          Here are some speaker notes that will be hidden in your presentation
          unless you press 's' on your keyboard.
 
    - 
-     - h1: This is how lists work
+     - h3: This is how lists work
      - ol:
         - alpha
         - beta
         - gamma 
 
    -
-     - h1: Code highlighting
-       code: |
+     - h3: Code highlighting demo
+     - code: |
           import ansible
           ansible.all_the_things() 
+
+   - 
+     - h3: links
+     - link: [ 'Ansible Docs', 'http://docs.ansible.com' ]
+     - link: [ 'Galaxy', 'http://galaxy.ansibleworks.com' ]
+   
 
    # NOT SUPPORTED YET: NESTED VERTICAL SLIDES
    # (CONTINUING LIST OF NOT SUPPORTED YET THINGS PENDING AS I GO DOWN THE EXAMPLES AND MAKE YAML VERSIONS)
