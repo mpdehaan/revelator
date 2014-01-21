@@ -1,13 +1,13 @@
 # (C) Michael DeHaan, 2014.
 #
-# This file is part of Slide The Relevator
+# This file is part of Relevator
 #
-# Slide The Revelator is free software: you can redistribute it and/or modify
+# Revelator is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Slide The Relevator is distributed in the hope that it will be useful,
+# Relevator is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -185,6 +185,10 @@ class Deck(object):
                        end_key = "\n</a></p>\n"
                        value = name
 
+                   elif k == 'image':
+                       start_key = "<p><img src='%s'>" % v
+                       end_key = "</p>"
+                       value = ""
 
                    self.io.write("%s%s%s" % (start_key, value, end_key))
 

@@ -1,5 +1,5 @@
-Slide The Revelator
-===================
+the Revelator
+=============
 
 Who's That Writin' Reveal.js Slide HTML?  
 

@@ -31,10 +31,13 @@ slides:
           ansible.all_the_things() 
 
    - 
-     - h3: links
+     - h3: Links and images
+     - image: 'https://pbs.twimg.com/profile_images/422168535/51035561796_N01_bigger.jpg'
      - link: [ 'Ansible Docs', 'http://docs.ansible.com' ]
      - link: [ 'Galaxy', 'http://galaxy.ansibleworks.com' ]
+  
    
+ 
 
    # NOT SUPPORTED YET: NESTED VERTICAL SLIDES
    # (CONTINUING LIST OF NOT SUPPORTED YET THINGS PENDING AS I GO DOWN THE EXAMPLES AND MAKE YAML VERSIONS)
