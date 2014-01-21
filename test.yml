@@ -24,6 +24,12 @@ slides:
         - beta
         - gamma 
 
+   -
+     - h1: Code highlighting
+       code: |
+          import ansible
+          ansible.all_the_things() 
+
    # NOT SUPPORTED YET: NESTED VERTICAL SLIDES
    # (CONTINUING LIST OF NOT SUPPORTED YET THINGS PENDING AS I GO DOWN THE EXAMPLES AND MAKE YAML VERSIONS)
    

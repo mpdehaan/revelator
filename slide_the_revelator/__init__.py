@@ -165,16 +165,22 @@ class Deck(object):
                else:
 
                    # regular tags
-                   start_key = k
-                   end_key = k
+                   start_key = "<%s>\n" % k
+                   end_key = "</%s>\n" % k
 
                    # special handling
                    if k == 'class_notes':
                        # class notes
-                       start_key = 'aside class=\'notes\''
-                       end_key = 'aside'
+                       start_key = '<aside class=\'notes\'>\n'
+                       end_key = '\n</aside>'
 
-                   self.io.write("<%s>%s</%s>" % (start_key, v, end_key))
+                   elif k == 'code':
+                       print "GOT: %s" % v
+                       start_key = "<pre><code contenteditable>\n"
+                       end_key = "\n</pre></code>\n"
+
+
+                   self.io.write("%s%s%s" % (start_key, v, end_key))
 
        # end section
        self.io.write("</section>")
