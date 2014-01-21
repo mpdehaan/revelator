@@ -148,12 +148,14 @@ class Deck(object):
            if type(elem) != dict:
                raise Exception("expected a list of dicts")           
            for (k,v) in elem.iteritems():
-               nk = k
+               start_key = k
+               end_key = k
 
-               if nk == 'class_notes':
-                   nk = 'aside class=\'notes\''
+               if k == 'class_notes':
+                   start_key = 'aside class=\'notes\''
+                   end_key = 'aside'
 
-               self.io.write("<%s>%s</%s>" % (nk,v,nk))
+               self.io.write("<%s>%s</%s>" % (start_key, v, end_key))
        self.io.write("</section>")
        
 
