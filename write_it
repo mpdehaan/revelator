@@ -1,4 +1,4 @@
-#/usr/bin/env python
+#!/usr/bin/env python
 
 import os
 import sys
@@ -7,13 +7,13 @@ from revelator import Deck
 input_file = sys.argv[1]
 output_path = sys.argv[2]
 
+if not os.path.exists(output_path):
+    os.makedirs(output_path)
+
 print "input file: %s" % input_file
 os.system("cp -a reveal_js_261/* %s" % output_path)
 
 buffer = Deck(input_file).run()
-
-if not os.path.exists(output_path):
-    os.makedirs(output_path)
 
 fd = open("%s/index.html" % output_path, "w")
 fd.write(buffer)
