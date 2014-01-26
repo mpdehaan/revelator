@@ -185,7 +185,7 @@ class Deck(object):
        for elem in slide_data:
 
            if type(elem) != dict:
-               raise Exception("expected a list of dicts")           
+               raise Exception("expected a list of dicts, got %s" % elem)           
 
            for (k,v) in elem.iteritems():
 
