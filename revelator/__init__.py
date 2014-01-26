@@ -136,9 +136,10 @@ class Deck(object):
        self.write_footer(self.data.get('footer',{}))
        return self.io.getvalue()
 
-   def write_slides(self, data):
+   def write_slides(self, data, nested=False):
        ''' Given a list of slide data structures, write them '''
 
+       nested_io = StringIO.StringIO()
        for x in data:
            if type(x) == dict:
                for (k,v) in x.iteritems():
@@ -147,7 +148,13 @@ class Deck(object):
                    else:
                        raise Exception("unknown key: %s" % k)
            elif type(x) == list: 
-               self.write_slide(x)
+               if not nested:
+                   self.io.write(self.write_slide(x, nested=nested))
+               else:
+                   nested_io.write(self.write_slide(x, nested=nested))
+       if nested:
+           return nested_io.getvalue()
+
 
    def write_header(self, data):
        ''' Write the reveal JS header, plugging in some data from the filename '''
@@ -163,11 +170,16 @@ class Deck(object):
 
        self.io.write(REVEAL_FOOTER)
 
-   def write_slide(self, slide_data):
+   def write_slide(self, slide_data, nested=False):
        ''' Logic to write any given slide '''
 
+       slide_io = StringIO.StringIO()
+
        # begin section
-       self.io.write("<section data-background='%(background)s' data-transition='%(transition)s'>\n" % (self.defaults))
+       if not nested:
+           slide_io.write("<section data-background='%(background)s' data-transition='%(transition)s'>\n" % (self.defaults))
+       else:
+           slide_io.write("<section>\n")
 
        # for each element in the slide
        for elem in slide_data:
@@ -177,13 +189,14 @@ class Deck(object):
 
            for (k,v) in elem.iteritems():
 
+            
                if k in [ 'ol', 'ul' ] :
 
                    # ordered lists
-                   self.io.write("<%s>" % k)  
+                   slide_io.write("<%s>" % k)  
                    for v2 in v:
-                       self.io.write("<li>%s</li>" % v2)
-                   self.io.write("</%s>" % k)
+                       slide_io.write("<li>%s</li>" % v2)
+                   slide_io.write("</%s>" % k)
 
                else:
 
@@ -217,9 +230,16 @@ class Deck(object):
                        start_key = '<blockquote>'
                        end_key = '</blockquote>'
 
-                   self.io.write("%s%s%s" % (start_key, value, end_key))
+                   elif k == 'nested':
+                       start_key = ''
+                       end_key = ''
+                       value = self.write_slides(v, nested=True)
 
+                   slide_io.write("%s%s%s" % (start_key, value, end_key))
+     
        # end section
-       self.io.write("</section>")
+
+       slide_io.write("</section>")
+       return slide_io.getvalue()
 
  

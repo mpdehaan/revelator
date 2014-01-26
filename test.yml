@@ -56,6 +56,18 @@ slides:
    - set_global:
        transition: linear # rotate is annoying
 
+   -
+     - nested:
+         - 
+           - h3: This is a nested slide
+           - p: Press down arrow
+         - 
+           - h3: Every one was a Henry!
+           - p: HENRY!
+         -
+           - h3: Sorry about that.
+           - p: The person making up these slides has been sacked. 
+
    - 
      - h3: Links and images
      - image: 'https://pbs.twimg.com/profile_images/422168535/51035561796_N01_bigger.jpg'
@@ -66,5 +78,3 @@ slides:
      - h3: Yay!
    
  
-   # NOT SUPPORTED YET: NESTED VERTICAL SLIDES
-   
