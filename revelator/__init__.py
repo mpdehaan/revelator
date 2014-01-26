@@ -116,6 +116,8 @@ DEFAULT_DESCRIPTION = "Default Description"
 class Deck(object):
 
    def __init__(self, filename):
+       ''' Construct a new Deck object.  Takes a YAML filename as input '''
+
        self.filename = filename
        self.defaults = dict(
            transition = 'linear',
@@ -127,12 +129,16 @@ class Deck(object):
        fh.close()       
  
    def run(self):
+       ''' Return the Reveal JS HTML from processing the YAML file ''' 
+
        self.write_header(self.data.get('header',{}))
        self.write_slides(self.data['slides'])
        self.write_footer(self.data.get('footer',{}))
        return self.io.getvalue()
 
    def write_slides(self, data):
+       ''' Given a list of slide data structures, write them '''
+
        for x in data:
            if type(x) == dict:
                for (k,v) in x.iteritems():
@@ -144,6 +150,8 @@ class Deck(object):
                self.write_slide(x)
 
    def write_header(self, data):
+       ''' Write the reveal JS header, plugging in some data from the filename '''
+
        self.io.write(REVEAL_HEADER % dict(
            author = data.get('author', DEFAULT_AUTHOR),
            title = data.get('title', DEFAULT_TITLE),
@@ -151,25 +159,23 @@ class Deck(object):
        ))
 
    def write_footer(self, data):
+       ''' Write the reveal JS footer '''
+
        self.io.write(REVEAL_FOOTER)
 
    def write_slide(self, slide_data):
+       ''' Logic to write any given slide '''
 
        # begin section
        self.io.write("<section data-background='%(background)s' data-transition='%(transition)s'>\n" % (self.defaults))
-               
-
 
        # for each element in the slide
        for elem in slide_data:
-
 
            if type(elem) != dict:
                raise Exception("expected a list of dicts")           
 
            for (k,v) in elem.iteritems():
-
-
 
                if k in [ 'ol', 'ul' ] :
 
@@ -178,7 +184,6 @@ class Deck(object):
                    for v2 in v:
                        self.io.write("<li>%s</li>" % v2)
                    self.io.write("</%s>" % k)
-
 
                else:
 
@@ -216,6 +221,5 @@ class Deck(object):
 
        # end section
        self.io.write("</section>")
-       
 
-                       
+ 
