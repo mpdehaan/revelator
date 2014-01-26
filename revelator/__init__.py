@@ -222,7 +222,7 @@ class Deck(object):
                        value = name
 
                    elif k == 'image':
-                       start_key = "<p><img src='%s'>" % v
+                       start_key = "<p><img src='%s' style='border:0px;background-color:%s'>" % (v, self.defaults['background'])
                        end_key = "</p>"
                        value = ""
 
