@@ -16,11 +16,7 @@ os.system("cp -a reveal_js_261/* %s" % output_path)
 buffer = Deck(input_file).run()
 
 fd = open("%s/index.html" % output_path, "w")
-fd.write(buffer)
+fd.write(buffer.encode("utf-8"))
 fd.close()
 
 print "done, content written to: %s" % output_path
-
-
-
-
