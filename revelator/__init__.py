@@ -121,6 +121,8 @@ class Deck(object):
        self.filename = filename
        self.defaults = dict(
            transition = 'linear',
+           fragment = None,
+           frag_class = "",
            background = '#000000'    
        )
        fh = open(self.filename, 'r')
@@ -145,6 +147,9 @@ class Deck(object):
                for (k,v) in x.iteritems():
                    if k == 'set_global':
                        self.defaults.update(v)
+
+                       if self.defaults['fragment'] is not None:
+                           self.defaults["frag_class"] = self.compute_fragment_class(self.defaults)
                    else:
                        raise Exception("unknown key: %s" % k)
            elif type(x) == list: 
@@ -193,15 +198,15 @@ class Deck(object):
                if k in [ 'ol', 'ul' ] :
 
                    # ordered lists
-                   slide_io.write("<%s>" % k)  
+                   slide_io.write("<%s>" % k) 
                    for v2 in v:
-                       slide_io.write("<li>%s</li>" % v2)
+                       slide_io.write("<br><li %s>%s</li>" % (self.defaults['frag_class'], v2))
                    slide_io.write("</%s>" % k)
 
                else:
 
                    # regular tags
-                   start_key = "<%s>\n" % k
+                   start_key = "<%s %s>\n" % (k, self.defaults['frag_class'])
                    end_key = "</%s>\n" % k
                    value = v
 
@@ -212,22 +217,22 @@ class Deck(object):
                        end_key = '\n</aside>'
 
                    elif k == 'code':
-                       start_key = "<pre><code contenteditable>\n"
+                       start_key = "<pre><code contenteditable %s>\n" % (self.defaults['frag_class'])
                        end_key = "\n</pre></code>\n"
 
                    elif k == 'link':
                        (name, link) = v
-                       start_key = "<p><a href='%s'>\n" % link
+                       start_key = "<p><a href='%s' %s>\n" % (link, self.defaults['frag_class'])
                        end_key = "\n</a></p>\n"
                        value = name
 
                    elif k == 'image':
-                       start_key = "<p><img src='%s' style='border:0px;background-color:%s'>" % (v, self.defaults['background'])
+                       start_key = "<p><img src='%s' style='border:0px;background-color:%s' %s>" % (v, self.defaults['background'], self.defaults['frag_class'])
                        end_key = "</p>"
                        value = ""
 
                    elif k == 'quote':
-                       start_key = '<blockquote>'
+                       start_key = '<blockquote %s>' % self.defaults['frag_class']
                        end_key = '</blockquote>'
 
                    elif k == 'nested':
@@ -242,4 +247,21 @@ class Deck(object):
        slide_io.write("</section>")
        return slide_io.getvalue()
 
- 
+   def compute_fragment_class(self, defaults):
+        """  Returns fragment HTML class= string. """
+
+        if "fragment" not in defaults:
+            # not specified so take the default: no fragments
+            return ""
+  
+        elif str(defaults["fragment"]).lower().startswith("false"):
+            # force no fragments
+            return ""
+  
+        elif str(defaults["fragment"]).lower().startswith("true"):
+            # want fragments but didn't specify class
+            return ' class="fragment"' 
+  
+        else:  
+            # want fragments and specified class
+            return ' class="fragment %s" ' % defaults["fragment"] 
