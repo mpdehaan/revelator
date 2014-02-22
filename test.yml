@@ -10,12 +10,18 @@ slides:
      - h1: hello
      - h3: this is a deck
 
+   - set_global:
+       fragment: true
+
    -
      - h3: I am slide two
      - p: Dropping knowledge 
      - class_notes: 
          Here are some speaker notes that will be hidden in your presentation
          unless you press 's' on your keyboard.
+
+   - set_global:
+       fragment: grow
 
    - 
      - h3: This is how ordered lists work
@@ -24,12 +30,18 @@ slides:
         - beta
         - gamma 
 
+   - set_global:
+       fragment: shrink
+
    - 
      - h3: And unordered lists are also a thing
      - ul:
         - duck
         - duck
         - goose 
+
+   - set_global:
+       fragment: "roll-in"
 
    -
      - h3: Code highlighting demo
@@ -38,6 +50,7 @@ slides:
           ansible.all_the_things() 
      
    - set_global:
+       fragment: "highlight-green"
        background: '#007777'
 
    - 
@@ -47,6 +60,7 @@ slides:
    - set_global:
        background: '#000000'
        transition: rotate
+       fragment: "highlight-current-red"
 
    - 
      - h3: Quotes (and a different slide transition)
@@ -55,6 +69,7 @@ slides:
 
    - set_global:
        transition: linear # rotate is annoying
+       fragment: "highlight-blue"
 
    -
      - nested:
@@ -68,12 +83,17 @@ slides:
            - h3: Sorry about that.
            - p: The person making up these slides has been sacked. 
 
+   - set_global:
+       fragment: "fade-out"
    - 
      - h3: Links and images
      - image: 'https://pbs.twimg.com/profile_images/422168535/51035561796_N01_bigger.jpg'
      - link: [ 'Ansible Docs', 'http://docs.ansible.com' ]
      - link: [ 'Galaxy', 'http://galaxy.ansibleworks.com' ]
    
+   - set_global:
+       fragment: false
+
    - 
      - h3: Yay!
    
