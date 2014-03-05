@@ -88,7 +88,7 @@ slides:
    - 
      - h3: Links and images
      - image: 'https://pbs.twimg.com/profile_images/422168535/51035561796_N01_bigger.jpg'
-     - link: [ 'Ansible Docs', 'http://docs.ansible.com' ]
+     - link: [ 'Ansible Docs', 'http://docs.ansible.com', '_blank' ]
      - link: [ 'Galaxy', 'http://galaxy.ansibleworks.com' ]
    
    - set_global:
