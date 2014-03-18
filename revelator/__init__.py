@@ -151,7 +151,7 @@ class Deck(object):
                        if self.defaults['fragment'] is not None:
                            self.defaults["frag_class"] = self.compute_fragment_class(self.defaults)
                    else:
-                       raise Exception("unknown key: %s" % k)
+                       raise Exception("unknown key: %s, value: %s" % (k,v))
            elif type(x) == list: 
                if not nested:
                    self.io.write(self.write_slide(x, nested=nested))
