@@ -47,7 +47,13 @@ REVEAL_HEADER = """
 
                 <!-- If the query includes 'print-pdf', use the PDF print sheet -->
                 <script>
-                        document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+                  if( window.location.search.match( /print-pdf/gi ) ) {
+                    var link = document.createElement( 'link' );
+                    link.rel = 'stylesheet';
+                    link.type = 'text/css';
+                    link.href = 'css/print/pdf.css';
+                    document.getElementsByTagName( 'head' )[0].appendChild( link );
+                  }
                 </script>
 
                 <!--[if lt IE 9]>
@@ -151,7 +157,7 @@ class Deck(object):
                        if self.defaults['fragment'] is not None:
                            self.defaults["frag_class"] = self.compute_fragment_class(self.defaults)
                    else:
-                       raise Exception("unknown key: %s" % k)
+                       raise Exception("unknown key: %s, value: %s" % (k,v))
            elif type(x) == list: 
                if not nested:
                    self.io.write(self.write_slide(x, nested=nested))
