@@ -227,8 +227,14 @@ class Deck(object):
                        end_key = "\n</pre></code>\n"
 
                    elif k == 'link':
-                       (name, link) = v
-                       start_key = "<p><a href='%s' %s>\n" % (link, self.defaults['frag_class'])
+                       # backward compat for existing decks
+                       try:
+                           (name, link, target) = v
+                       except:
+                           (name, link) = v
+                           target = '_self'
+
+                       start_key = "<p><a href='%s' target='%s' %s>\n" % (link, target, self.defaults['frag_class'])
                        end_key = "\n</a></p>\n"
                        value = name
 
