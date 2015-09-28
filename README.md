@@ -8,8 +8,7 @@ Not me.
 
 Relevator generates Reveal JS presentation decks from simplified (and easier to edit) YAML files.
 
-Various things may be rough here and features are being added as they are needed, and I'm ok with that.
-Pull requests will be entertained.
+This is NOT actively maintained anymore, and the error handling around the YAML isn't very good.  There probably should be a Python "DSL" instead to make it easier.
 
 Background
 ==========
@@ -22,8 +21,7 @@ HTML you write typically looks like: https://github.com/hakimel/reveal.js/blob/m
 
 Except with Revelator, you can write simpler things like: https://github.com/mpdehaan/slide-the-revelator/blob/master/test.yml
 
-Which is more the way I want to compose and tweak slides.
-
+So you have to write a lot less of the angle brackets.
 
 Usage
 =====
@@ -48,8 +46,10 @@ Supported Reveal.js Features
 - Ordered and Unordered Lists
 - Blockquotes
 
-Helpful Syntax
-==============
+Syntax
+======
+
+Here's how slide transitions and fragments (transitions between parts of slides) work:
 
 set_global options:
 - fragment
